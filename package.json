@@ -1,0 +1,48 @@
+{
+  "name": "genre-of-design-mvc",
+  "version": "1.0.0",
+  "description": "Genre of Design - MVC Architecture with got-mvc, Node.js and Vue.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "npm install",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "sequelize": "^6.35.0",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "uuid": "^9.0.1",
+    "nodemailer": "^6.9.7",
+    "express-rate-limit": "^7.1.5",
+    "compression": "^1.7.4",
+    "express-fileupload": "^1.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "keywords": [
+    "mvc",
+    "got-mvc",
+    "nodejs",
+    "express",
+    "vuejs",
+    "interior-design",
+    "portfolio"
+  ],
+  "author": "Genre of Design",
+  "license": "MIT"
+}

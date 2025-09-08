@@ -67,12 +67,14 @@ const projectRoutes = require('./routes/projects');
 const jobRoutes = require('./routes/jobs');
 const contactRoutes = require('./routes/contact');
 const vendorRoutes = require('./routes/vendor');
+const blogRoutes = require('./routes/blogs');
 
 // API Routes - Public only for client landing page
 app.use('/api/projects', projectRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/vendor', vendorRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // API Health Check
 app.get('/', (req, res) => {
@@ -85,7 +87,8 @@ app.get('/', (req, res) => {
       projects: '/api/projects',
       jobs: '/api/jobs',
       contact: '/api/contact',
-      vendor: '/api/vendor'
+      vendor: '/api/vendor',
+      blogs: '/api/blogs'
     }
   });
 });

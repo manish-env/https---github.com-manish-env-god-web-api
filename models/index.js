@@ -5,6 +5,7 @@ const JobPosting = require('./JobPosting');
 const Applicant = require('./Applicant');
 const ContactMessage = require('./ContactMessage');
 const VendorRegistration = require('./VendorRegistration');
+const Blog = require('./Blog');
 
 // Define associations
 JobPosting.hasMany(Applicant, {
@@ -40,5 +41,6 @@ module.exports = {
   Applicant,
   ContactMessage,
   VendorRegistration,
+  Blog,
   initDatabase
 };

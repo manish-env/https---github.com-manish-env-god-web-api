@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: god-mvc-api
+    env: node
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false

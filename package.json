@@ -44,5 +44,8 @@
     "portfolio"
   ],
   "author": "Genre of Design",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "20.x"
+  }
 }

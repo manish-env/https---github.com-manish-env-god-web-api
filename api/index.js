@@ -1,4 +1,7 @@
 const express = require('express');
+// Force bundling of pg deps for Sequelize in serverless
+require('pg');
+require('pg-hstore');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');

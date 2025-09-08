@@ -3,16 +3,7 @@
   "functions": {
     "api/index.js": {
       "runtime": "nodejs20.x",
-      "includeFiles": [
-        "routes/**",
-        "controllers/**",
-        "models/**",
-        "config/**",
-        "middleware/**",
-        "utils/**",
-        "node_modules/pg/**",
-        "node_modules/pg-hstore/**"
-      ]
+      "includeFiles": "{routes,controllers,models,config,middleware,utils,node_modules/pg,node_modules/pg-hstore}/**"
     }
   },
   "routes": [

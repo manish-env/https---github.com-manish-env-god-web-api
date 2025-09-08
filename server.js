@@ -111,22 +111,27 @@ app.use((req, res) => {
   });
 });
 
-// Initialize database and start server
-const startServer = async () => {
+// Initialize database
+const initApp = async () => {
   try {
     await initDatabase();
-    
+  } catch (error) {
+    console.error('❌ Failed to initialize database:', error);
+  }
+};
+
+// Initialize for non-serverless environments
+if (process.env.NODE_ENV !== 'production') {
+  initApp().then(() => {
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📱 Frontend: http://localhost:${PORT}`);
       console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}`);
     });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
-    process.exit(1);
-  }
-};
+  });
+}
 
-startServer();
+// Initialize database for serverless environment
+initApp();
 
 module.exports = app;

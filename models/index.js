@@ -24,11 +24,18 @@ const initDatabase = async () => {
     await sequelize.authenticate();
     console.log('✅ Database connection established successfully.');
     
-    // Sync models with database (force: false to preserve existing data)
-    await sequelize.sync({ force: false });
-    console.log('✅ Database synchronized successfully.');
+    // Only sync in development environment
+    if (process.env.NODE_ENV !== 'production') {
+      await sequelize.sync({ force: false });
+      console.log('✅ Database synchronized successfully.');
+    }
+    return true;
   } catch (error) {
     console.error('❌ Database initialization failed:', error);
+    if (process.env.NODE_ENV === 'production') {
+      console.error('Database error in production:', error.message);
+      return false; // Don't throw in production
+    }
     throw error;
   }
 };

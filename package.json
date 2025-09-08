@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "build": "npm install",
-    "vercel-build": "npm install && npm install pg pg-hstore",
+    "vercel-build": "npm install --production=false && npm install pg pg-hstore --force",
     "test": "jest"
   },
   "dependencies": {

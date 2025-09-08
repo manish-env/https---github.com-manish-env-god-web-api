@@ -93,10 +93,37 @@ app.get('/', (req, res) => {
   });
 });
 
+// Unhandled promise rejection handler
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+// Uncaught exception handler
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
+  console.error('Error details:', {
+    message: err.message,
+    stack: err.stack,
+    code: err.code,
+    path: req.path,
+    method: req.method
+  });
+
+  // Handle specific error types
+  if (err.name === 'SequelizeConnectionError') {
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection error',
+      error: process.env.NODE_ENV === 'development' ? err.message : 'Service temporarily unavailable'
+    });
+  }
+
+  // Default error response
+  res.status(err.status || 500).json({
     success: false,
     message: 'Something went wrong!',
     error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'

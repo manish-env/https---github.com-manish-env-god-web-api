@@ -138,27 +138,22 @@ app.use((req, res) => {
   });
 });
 
-// Initialize database
-const initApp = async () => {
-  try {
-    await initDatabase();
-  } catch (error) {
-    console.error('❌ Failed to initialize database:', error);
-  }
-};
-
-// Initialize for non-serverless environments
+// Initialize database if not in serverless environment
 if (process.env.NODE_ENV !== 'production') {
-  initApp().then(() => {
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📱 Frontend: http://localhost:${PORT}`);
-      console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}`);
-    });
-  });
+  const startServer = async () => {
+    try {
+      await initDatabase();
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+        console.log(`📱 Frontend: http://localhost:${PORT}`);
+        console.log(`🔧 Environment: ${process.env.NODE_ENV || 'development'}`);
+      });
+    } catch (error) {
+      console.error('❌ Failed to start server:', error);
+    }
+  };
+  startServer();
 }
 
-// Initialize database for serverless environment
-initApp();
-
+// Export the Express app for Vercel
 module.exports = app;
